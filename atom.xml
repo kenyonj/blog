@@ -3,7 +3,7 @@
    <title>Really Busy Wizards</title>
    <link href="/atom.xml" rel="self"/>
    <link href=""/>
-   <updated>2014-10-04T00:19:06-04:00</updated>
+   <updated>2014-10-04T00:47:24-04:00</updated>
    <id></id>
    <author>
       <name>Justin Kenyon</name>
@@ -196,6 +196,36 @@ You can use a coupon code for $10 to be added to your account (which is basicall
 &lt;p&gt;I hope that this guide was informative and helpful. It may even save you some money while giving you a dev playground on the cheap.&lt;/p&gt;
 
 &lt;p&gt;Thanks for reading!&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+      <title>Podcast #0 is live!</title>
+      <link href="/podcast-number-0-is-live"/>
+      <updated>2014-05-14T00:00:00-04:00</updated>
+      <id>/podcast-number-0-is-live</id>
+      <content type="html">&lt;p&gt;Some fellow &lt;a href=&quot;http://thisismetis.com&quot;&gt;Metis&lt;/a&gt; students and I got together and recorded a podcast about our experience so far in the bootcamp and technology in general. The audio quality leaves a lot to be desired, but we hope to have some studio space in the next couple of days for future releases.&lt;/p&gt;
+
+&lt;p&gt;Your hosts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Derek Kaknes - &lt;a href=&quot;http://twitter.com/dkaknes&quot;&gt;@dkaknes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jeremy Salig - &lt;a href=&quot;http://twitter.com/jeremysalig&quot;&gt;@JeremySalig&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Avi Gilligan - &lt;a href=&quot;http://twitter.com/euraldius&quot;&gt;@euraldius&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Justin Kenyon - &lt;a href=&quot;http://twitter.com/kenyonj&quot;&gt;@kenyonj&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Show Topics:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;plans after metis&lt;/li&gt;
+&lt;li&gt;tdd challenges&lt;/li&gt;
+&lt;li&gt;new javascript frameworks&lt;/li&gt;
+&lt;li&gt;state of the web in modern society, and where that puts us&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Listen to the audio here:
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/148041642&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
 </content>
    </entry>
    
