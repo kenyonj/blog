@@ -3,7 +3,7 @@
    <title>Really Busy Wizards</title>
    <link href="/atom.xml" rel="self"/>
    <link href=""/>
-   <updated>2014-10-04T01:02:50-04:00</updated>
+   <updated>2014-10-04T10:59:55-04:00</updated>
    <id></id>
    <author>
       <name>Justin Kenyon</name>
@@ -200,9 +200,20 @@ You can use a coupon code for $10 to be added to your account (which is basicall
    </entry>
    
    <entry>
+      <title>Really Busy Wizards Podcast</title>
+      <link href="/really-busy-wizards-podcast-1"/>
+      <updated>2014-05-06T14:40:00-04:00</updated>
+      <id>/really-busy-wizards-podcast-1</id>
+      <content type="html">&lt;p&gt;Here it is... hot on the heels of podcast #0, we have the first studio quality recording. Hope you enjoy it!&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/148257291&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
+</content>
+   </entry>
+   
+   <entry>
       <title>Podcast #0 is live!</title>
       <link href="/podcast-number-0-is-live"/>
-      <updated>2014-05-14T00:00:00-04:00</updated>
+      <updated>2014-05-05T00:00:00-04:00</updated>
       <id>/podcast-number-0-is-live</id>
       <content type="html">&lt;p&gt;Some fellow &lt;a href=&quot;http://thisismetis.com&quot;&gt;Metis&lt;/a&gt; students and I got together and recorded a podcast about our experience so far in the bootcamp and technology in general. The audio quality leaves a lot to be desired, but we hope to have some studio space in the next couple of days for future releases.&lt;/p&gt;
 
@@ -226,17 +237,6 @@ You can use a coupon code for $10 to be added to your account (which is basicall
 
 &lt;p&gt;Listen to the audio here:
 &lt;iframe width=&quot;100%&quot; height=&quot;300&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/148041642&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
-</content>
-   </entry>
-   
-   <entry>
-      <title>Really Busy Wizards Podcast</title>
-      <link href="/really-busy-wizards-podcast-1"/>
-      <updated>2014-05-06T14:40:00-04:00</updated>
-      <id>/really-busy-wizards-podcast-1</id>
-      <content type="html">&lt;p&gt;Here it is... hot on the heels of podcast #0, we have the first studio quality recording. Hope you enjoy it!&lt;/p&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/148257291&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
 </content>
    </entry>
    
