@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="description" content="Personal blog of Berk Özbalcı, about computers, math and music">
+      <meta name="author" content="Berk Özbalcı">
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="/css/syntax.css">
+      <link rel="stylesheet" href="/css/main.css">
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+      <link rel="icon" href="/favicon.ico" type="image/x-icon">
+      <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+      <title>Teaching is the best method of learning.</title>
+   </head>
+   
+   <body>
+      <main>
+         <header>
+            <h1 class="title"><a href="/">Really Busy Wizards</a></h1>
+         </header>
+
+         <article>
+   <h2>Teaching is the best method of learning.</h2>
+   <p>Day 2 of the <a href="http://thisismetis">Metis</a> bootcamp has come and gone and today most of us got our first taste of the ruby language. I have dabbled in it before using different online tutorials, such as <a href="http://www.codecademy.com">Codecademy</a>. I have never really taken a problem, spoke about and solved it in everyday english, and then used that to write my code. It is a great way to really drive home those basic concepts that will help build the foundation of what we will be learning over the next 12 weeks.</p>
+
+<p>Wow, 12 weeks. That seems like so far away. Especially since only after day 2 we have broken a lot of the first week ice that is now allowing us to lean on each other and really collaborate to solve problems. This is a huge concept in Rails: <strong>teamwork</strong>. I see it everywhere. From meetups and online boards, to resume skills and job postings. I am very glad that this environment that <a href="http://thoughtbot.com">thoughtbot</a> is fostering is encouraging teamwork so heavily. </p>
+
+<p>I realized over the last 2 days that the best way for me to commit something to memory is to teach it to someone else. Much like creating a unique memory in your mind when trying to learn someones name. If a unique event happens when you learn someone&#39;s name, you are more likely to remember it. The same is true when learning new skills. You can see someone do it, even do it yourself, but you really lay the cement when you explain it to someone else.</p>
+
+<p>So, in observance of my new found skill, let me teach you how to write your first Ruby program, a simple lottery program:</p>
+
+<p>We&#39;ll run this in the Interactive Ruby Shell, so open Terminal (on a Mac, for Windows, you&#39;ll have to <a href="http://rubyinstaller.org/">download</a> and install Ruby first, then open a command prompt) and type:
+<code>irb</code> and press <code>ENTER</code></p>
+
+<p>You should now see a prompt that looks similar to this:
+<code>irb(main):001:0&gt;</code></p>
+
+<p>We are going to start by writing a function. This will allow us to write out all the code, but not execute any of it until we call the function at the end. A function is basically a recipe that you will lookup and use when you need it, but it is stored until such a time.</p>
+
+<p>After each line of code you will press <code>ENTER</code></p>
+
+<p>First, we will define the function:
+<code>def lottery</code></p>
+
+<p>Next, we will we use the <code>puts</code> method to literally &quot;put&quot; something on the screen for the user to see:
+<code>puts &quot;Give me some names, then enter a blank line when you are finished.&quot;</code></p>
+
+<p>This will be followed by our initialization of the variable we will use to store all the names for the lottery. Since it will store multiple names we need to put it inside an array variable. To initialize an array variable all you need to do is assign an empty array to your variable name by typing this:
+<code>names = []</code></p>
+
+<p>Now, we need to prompt the user to start entering names. First we will want to show a little prompt symbol, just so it&#39;s clear where they will be typing:
+<code>print &quot;&gt; &quot;</code></p>
+
+<p>You may have thought, &quot;Why didn&#39;t we use the <code>puts</code> method?&quot;. Well, <code>puts</code> will display the message to the user and append a carriage return, or new line, at the end of the message. The <code>print</code> method displays just what&#39;s inside the quotes and does not automatically append any carriage returns. In this case, we just wanted to show the prompt and allow the user to start typing on the same line.</p>
+
+<p>Next, we need to tell the program where to store the input from the user. In this case, the initialization and method that takes the input from the keyboard is all going to be accomplished in one line:
+<code>name = gets.strip</code></p>
+
+<p>So far we have used <code>puts</code>, <code>print</code>, and <code>gets</code>. Are you starting to get the idea that Ruby is very easily readable by humans? One more thing about the above line I would like to explain because we are going to see it again in a few lines. The <code>strip</code> method, when applied to an object, is going to remove any leading and trailing whitespace. This means that if the user enters <code>SPACE</code> <code>SPACE</code> <code>SPACE</code> <code>SPACE</code> <code>Kevin</code> <code>SPACE</code> <code>SPACE</code> <code>SPACE</code>, all the program is going to assign to the <code>name</code> variable is <code>&quot;Kevin&quot;</code>. This will allow us to avoid any issues that we might have with blank entries as well.</p>
+
+<p>We now have 1 name in a <code>name</code> variable, but we have to get as many names as the user wants to enter and store it in the <code>names</code> array we created earlier. To accomplish this we will use a loop. Loops in Ruby are also very easy to read and write. Here is the loop we will use:
+<code>while name != &quot;&quot; do</code></p>
+
+<p>Basically this loop is going to loop through everything following it until the name that the user enters is blank, or <code>&quot;&quot;</code>. You&#39;ll see later on that we will need to close the loop so that the loop knows where to turn back and start from the beginning.</p>
+
+<p>Since we already have the first name from the user that we collected before the loop started, we need to assign that to the array. The placement of this command will also be useful for when the loop repeats to complete the same task each time:
+<code>names &lt;&lt; name</code></p>
+
+<p>You see that we are adding <code>name</code> to the array <code>names</code> by putting <code>&lt;&lt;</code> in between. Think of the less-than signs as directional markers and they are adding the value on the right to the collection on the left.</p>
+
+<p>Next, we want to prompt the user for another name. We will use the same work as before:
+<code>print &quot;&gt; &quot;</code><br>
+<code>name = gets.strip</code></p>
+
+<p>This brings us to the end of our loop and we need to loop back around so that these entries get recorded, or, if the user entered a blank line, the loop will stop since the loop definition part is no longer true. For us to signal the end of the loop, we need to type:
+<code>end</code></p>
+
+<p>We now want to pick a winner at random and display the result. Guess what? It&#39;s super easy to do all that in Ruby, and can be accomplished in only 1 line! Here it is:
+<code>puts &quot;The lottery winner is #{names.sample}!&quot;</code></p>
+
+<p>Again, we used the familiar <code>puts</code> method to display things on the screen. Then, we notified the program that we are going to throw a variable inside of the string by typing in a <code>#{variable}</code>, and since we wanted to pick a random entry, all we needed to do was run the <code>sample</code> method on the array that we wanted to pick from. This returns 1 entry in the names array and displays it.</p>
+
+<p>Now, we can end the function that we just wrote by typing:
+<code>end</code></p>
+
+<p>You should now see the shell display the function you just wrote like this: 
+<code>=&gt; :lottery</code></p>
+
+<p>Now, all we need to do is execute the function and test the lottery. To run the function, type:
+<code>lottery</code></p>
+
+<p>Good luck! Once you are done playing around in the Interactive Ruby Shell you can type either <code>quit</code>, <code>exit</code>, or press <code>CTRL+D</code> to get back to your main terminal prompt. I have listed all the irb commands and my test with the lottery game below for your reference. </p>
+
+<p>My main reason for doing this is exactly what I said before, the best way you can fully learn and understand something is to explain it to someone else. I am now a pro at Ruby lottery games that are under 15 lines long!</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">irb(main):001:0&gt; def lottery  
+irb(main):002:1&gt; puts &quot;Give me some names, then enter a blank line when you are finished.&quot;
+irb(main):003:1&gt; names = []
+irb(main):004:1&gt; print &quot;&gt; &quot;
+irb(main):005:1&gt; name = gets.strip
+irb(main):006:1&gt; while name != &quot;&quot; do
+irb(main):007:2* names &lt;&lt; name
+irb(main):008:2&gt; print &quot;&gt; &quot;
+irb(main):009:2&gt; name = gets.strip
+irb(main):010:2&gt; end
+irb(main):011:1&gt; puts &quot;The lottery winner is #{names.sample}!&quot;
+irb(main):012:1&gt; end
+=&gt; :lottery  
+irb(main):013:0&gt; lottery
+Give me some names, then enter a blank line when you are finished.
+&gt; Justin  
+&gt; Nastya  
+&gt; Sophia  
+&gt; Tanya  
+&gt; Natalya  
+&gt; Vladimir  
+&gt; Kyle  
+&gt; Krista  
+&gt; Paula  
+&gt; Chuck  
+&gt; Dima  
+&gt; Arseniy  
+&gt;  
+The lottery winner is Dima!
+=&gt; nil  
+irb(main):014:0&gt;
+</code></pre></div>
+</article>
+
+<footer>
+   <div id="date" class="meta">
+      25 Feb 2014
+   </div>
+   <div id="return">
+      <a href="/">&laquo; Return to the home page</a>
+   </div>
+</footer>
+
+      </main>
+   </body>
+</html>
