@@ -42,9 +42,7 @@ You can use a coupon code for $10 to be added to your account (which is basicall
 <li><p>Create an ssh key for your system to share with DigitalOcean for authentication:</p>
 
 <ul>
-<li>Open terminal:
-
-<ul>
+<li>Open terminal:</li>
 <li>Type these commands (pressing enter after each <code>command</code>):
 
 <ul>
@@ -55,13 +53,12 @@ You can use a coupon code for $10 to be added to your account (which is basicall
 <li>Copy the output to your clipboard and continue to the next set of steps</li>
 </ul></li>
 </ul></li>
-<li>On DigitalOcean, click on SSH Keys, then Add SSH Key:
+<li><p>On DigitalOcean, click on SSH Keys, then Add SSH Key:</p>
 
 <ul>
 <li>In the top field, give this key a name. This is not significant, just a way to differentiate between SSH Keys.</li>
 <li>Paste what you copied from the output of <code>cat ~/.ssh/id_rsa.pub</code> in the bottom field.</li>
 <li>Click on CREATE SSH KEY</li>
-</ul></li>
 </ul></li>
 </ul>
 
@@ -122,41 +119,32 @@ You can use a coupon code for $10 to be added to your account (which is basicall
 <hr>
 
 <ul>
-<li>Now that you have the dokku side all finished, there are some maintenance tasks that need to take place on the server that, if not completed, will cause some apps to fail at deployment.
-
-<ul>
-<li>Open terminal
-
-<ul>
+<li>Now that you have the dokku side all finished, there are some maintenance tasks that need to take place on the server that, if not completed, will cause some apps to fail at deployment.</li>
+<li>Open terminal</li>
 <li>Type these commands (pressing enter after each <code>command</code>):
 
 <ul>
-<li><code>ssh root@&lt;IP-ADDRESS&gt;</code>
-
-<ul>
+<li><code>ssh root@&lt;IP-ADDRESS&gt;</code></li>
 <li>these steps will update the dokku deploy step:
 
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li><code>cd ~/dokku</code></li>
+<li><code>git pull origin master</code></li>
+<li><code>make install</code></li>
 </ul></li>
 <li>these steps will install the dokku postgresql plugin:
 
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li><code>cd /var/lib/dokku/plugins</code></li>
+<li><code>git clone https://github.com/Kloadut/dokku-pg-plugin postgresql</code></li>
+<li><code>dokku plugins-install</code></li>
 </ul></li>
 <li>these steps will fix the LANG env variable for the docker containers (currently unecessary for rails deployments, but I am currently working on Haskell deployments and this is an issue):
 
 <ul>
-<li></li>
-<li></li>
-<li></li>
-</ul></li>
-</ul></li>
-</ul></li>
+<li><code>docker run progrium/buildstep locale-gen en_US.UTF-8</code></li>
+<li><code>docker ps -l</code> - note the ID of the command you just ran</li>
+<li><code>docker commit &lt;ID FROM PREVIOUS STEP&gt; progrium/buildstep</code></li>
 </ul></li>
 </ul></li>
 </ul>
