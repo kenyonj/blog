@@ -3,7 +3,7 @@
    <title>Really Busy Wizards</title>
    <link href="/atom.xml" rel="self"/>
    <link href=""/>
-   <updated>2014-10-03T22:55:36-04:00</updated>
+   <updated>2014-10-03T23:36:16-04:00</updated>
    <id></id>
    <author>
       <name>Justin Kenyon</name>
@@ -12,22 +12,190 @@
 
    
    <entry>
-      <title>Welcome to Jekyll!</title>
-      <link href="/welcome-to-jekyll"/>
-      <updated>2014-03-19T13:40:41-04:00</updated>
-      <id>/welcome-to-jekyll</id>
-      <content type="html">&lt;p&gt;You&amp;#39;ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes!
-To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
+      <title>Dokku + DigitalOcean = Your very own, cheap, Heroku clone!</title>
+      <link href="/dokku-digitalocean-your-very-own-cheap-heroku-clone"/>
+      <updated>2014-06-13T10:40:41-04:00</updated>
+      <id>/dokku-digitalocean-your-very-own-cheap-heroku-clone</id>
+      <content type="html">&lt;p&gt;These days I am learning tons of new information on a daily basis. I am currently a developer apprentice with &lt;a href=&quot;http://thoughtbot.com&quot;&gt;thoughtbot&lt;/a&gt; and one of the benefits of working with such a smart and motivated group of people is that I am constantly pushed to continue learning and developing my own skills.&lt;/p&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;One hurdle that I am about to gracefully jump over is setting up my own &amp;quot;heroku-like&amp;quot; clone using &lt;a href=&quot;https://github.com/progrium/dokku&quot;&gt;Dokku&lt;/a&gt; and &lt;a href=&quot;http://digitalocean.com&quot;&gt;DigitalOcean&lt;/a&gt;. I am paying around $5 a month and I am able to push any web app up to my personal server and Dokku will build it and deploy it onto a custom subdomain of my choosing.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I tried looking for a definitive guide of how to do this and ended up in lots of different places on the web to finally get all the information I needed to complete the process. The goal of this post is to help others that are trying to do the same thing. Here is the compilation of steps that I went through to get it up and running for deploying Rails apps:&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&amp;#39;s GitHub repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;(disclaimer: these are OS X Mavericks specific directions. If you are on another system, YMMV.)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Sign up for an account at &lt;a href=&quot;https://www.digitalocean.com/?refcode=a0f9fff0e285&quot;&gt;DigitalOcean&lt;/a&gt;. (note: this is a referral link, I get credit for referring you to DigitalOcean... Thanks!)
+You can use a coupon code for $10 to be added to your account (which is basically 2 months free) by searching google for: &lt;code&gt;DigitalOcean Promo Code&lt;/code&gt;. Once you have this code, you can add it to your account on the billing page:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Click on Billing&lt;/li&gt;
+&lt;li&gt;Click on Manage Payments&lt;/li&gt;
+&lt;li&gt;Add the promo code on the bottom of this page&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create an ssh key for your system to share with DigitalOcean for authentication:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Open terminal:
+
+&lt;ul&gt;
+&lt;li&gt;Type these commands (pressing enter after each &lt;code&gt;command&lt;/code&gt;):
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ssh-keygen -t rsa&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;enter&lt;/code&gt; to save it in the default location: &lt;code&gt;~/.ssh/id_rsa&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;enter&lt;/code&gt; to leave the password blank. note: if you want to be super secure, enter a password here and you will be asked for that password whenever authenticating using this key.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cat ~/.ssh/id_rsa.pub&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy the output to your clipboard and continue to the next set of steps&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;On DigitalOcean, click on SSH Keys, then Add SSH Key: 
+
+&lt;ul&gt;
+&lt;li&gt;In the top field, give this key a name. This is not significant, just a way to differentiate between SSH Keys.&lt;/li&gt;
+&lt;li&gt;Paste what you copied from the output of &lt;code&gt;cat ~/.ssh/id_rsa.pub&lt;/code&gt; in the bottom field. &lt;/li&gt;
+&lt;li&gt;Click on CREATE SSH KEY&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{&lt;1&gt;}&lt;img src=&quot;http://i.imgur.com/YXw5C5R.png&quot; alt=&quot;ssh_key&quot;&gt;&lt;/p&gt;
+
+&lt;h4&gt;Note&lt;/h4&gt;
+
+&lt;p&gt;The above key is totally random and not my real SSH Key. On that note, you should never publish your key since it gives you full root access to the system we are going to build.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Create your droplet&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Click on &lt;code&gt;Create&lt;/code&gt; to start the creation of a new droplet:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{&lt;2&gt;}&lt;img src=&quot;http://i.imgur.com/IfYgu56.png&quot; alt=&quot;create_droplet&quot;&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Use the screen caps below to guide you through the droplet creation. Underneath the following pictures I will give you notes on some of the fields.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{&lt;3&gt;}&lt;img src=&quot;http://i.imgur.com/3Xa0Zy8.png&quot; alt=&quot;droplet_1&quot;&gt;
+{&lt;4&gt;}&lt;img src=&quot;http://i.imgur.com/QHhy4Yk.png&quot; alt=&quot;droplet_2&quot;&gt;
+{&lt;5&gt;}&lt;img src=&quot;http://i.imgur.com/OcEWZmr.png&quot; alt=&quot;droplet_3&quot;&gt;&lt;/p&gt;
+
+&lt;h4&gt;Notes:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For the hostname field: You will add in your domain name here. This does not have to be registered yet, but you should think about registering something to be able to really customize your deployments. Here you can have the domain &lt;code&gt;appsinspace.com&lt;/code&gt;. This allows you to deploy apps that are accessible through: &lt;code&gt;http://app-name.appsinspace.com&lt;/code&gt;, just like Heroku!&lt;/li&gt;
+&lt;li&gt;For the size, you can choose the cheapest option (selected in the screen capture). If you wish to deploy more than 2-3 apps on this server you might run into memory issues (heap size errors during the build process) and need to bump this up to the 1GB of memory option (I have already done this on my droplet).&lt;/li&gt;
+&lt;li&gt;Select the region that is closest to you or the users that are going to be accessing your apps.&lt;/li&gt;
+&lt;li&gt;For the Select Image section, you will select the &amp;quot;Applications&amp;quot; tab and then &amp;quot;Dokku v0.2.3 on Ubuntu 14.04&amp;quot; (as of this post this is the latest DigitalOcean image, if it changes this guide might be broken.)&lt;/li&gt;
+&lt;li&gt;In the Add optional SSH Keys section, click on the SSH key that you added to DigitalOcean earlier.&lt;/li&gt;
+&lt;li&gt;Leave the Settings section untouched and click on Create Droplet&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Once your droplet has been created, you will be directed to a page like the one below:
+{&lt;6&gt;}&lt;img src=&quot;http://i.imgur.com/0dXrrqm.png&quot; alt=&quot;droplet_settings&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Copy down the IP address from this screen. I will here on refer to that address  as: &lt;code&gt;&amp;lt;IP-ADDRESS&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Navigate to &lt;code&gt;http://&amp;lt;IP-ADDRESS&amp;gt;&lt;/code&gt; and you should see a screen similar to below:
+{&lt;7&gt;}&lt;img src=&quot;http://i.imgur.com/8oR3yiu.png&quot; alt=&quot;dokku_setup&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Notes:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Paste your SSH Key that you created on DigitalOcean into this top box.&lt;/li&gt;
+&lt;li&gt;In the Hostname field, you can leave it as an IP address, or change it to your custom domain name that you have registered. &lt;/li&gt;
+&lt;li&gt;The option right below the Hostname field can be checked if you wish to use app URLs like &lt;code&gt;thisismyapp.appsinspace.com&lt;/code&gt;, otherwise you can just leave it unchecked and apps will be deployed in the format displayed in the last text field.&lt;/li&gt;
+&lt;li&gt;Once you have the options set up, click on &amp;quot;Finish Setup&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Now that you have the dokku side all finished, there are some maintenance tasks that need to take place on the server that, if not completed, will cause some apps to fail at deployment.
+
+&lt;ul&gt;
+&lt;li&gt;Open terminal
+
+&lt;ul&gt;
+&lt;li&gt;Type these commands (pressing enter after each &lt;code&gt;command&lt;/code&gt;):
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ssh root@&amp;lt;IP-ADDRESS&amp;gt;&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;these steps will update the dokku deploy step:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;these steps will install the dokku postgresql plugin:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;these steps will fix the LANG env variable for the docker containers (currently unecessary for rails deployments, but I am currently working on Haskell deployments and this is an issue):
+
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Now you are ready to deploy an app!&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Clone this small heroku sample rails app and deploy it using these steps:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git clone git@github.com:heroku/ruby-rails-sample.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ruby-rails-sample&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bundle&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bundle exec rake bootstrap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote add dokku dokku@&amp;lt;IP-ADDRESS&amp;gt;:rails-sample&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push dokku master&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;You will now see a bunch of deploy buildsteps, similar to what you see when deploying to heroku.&lt;/li&gt;
+&lt;li&gt;Once this is complete, you will still not be able to view your app since we have to create the database on the server side, even though this is completed automatically when using Heroku (small price to pay for your own deployment system).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Log into your server, create the database, and rake db:migrate by following these steps:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ssh root@&amp;lt;IP-ADDRESS&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dokku postgresql:create rails-sample&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker run -i -t dokku/rails-sample /bin/bash&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;export HOME=/app&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;for file in /app/.profile.d/*; do source $file; done&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hash -r&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd /app&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RAILS_ENV=production rake db:migrate&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exit&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exit&lt;/code&gt; - not a duplication error, this will log you our of your ssh session.&lt;/li&gt;
+&lt;li&gt;Note: this is quite the process. Hopefully in the future I can wrap this all up in a script that can be run after deployment to make it even more like Heroku.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Done!&lt;/h3&gt;
+
+&lt;p&gt;Now you can navigate to your new web app url, either: &lt;code&gt;http://rails-sample.appsinspace.com&lt;/code&gt;, or something similar, or &lt;code&gt;http://&amp;lt;IP-ADDRESS&amp;gt;:&amp;lt;SPECIFIC-PORT&amp;gt;&lt;/code&gt; (these details can be found at the bottom of the push messages from earlier, in this format:&lt;/p&gt;
+
+&lt;p&gt;{&lt;8&gt;}&lt;img src=&quot;http://i.imgur.com/loKHLrc.png&quot; alt=&quot;deployed_at&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;I hope that this guide was informative and helpful. It may even save you some money while giving you a dev playground on the cheap.&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
 </content>
    </entry>
    
