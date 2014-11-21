@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="A journey into development.">
+    <meta name="author" content="Justin Kenyon">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <title>What a difference a couple days (and some new skills) makes!</title>
+  </head>
+
+  <body>
+    <main>
+    <header>
+      <h1 class="title"><a href="/"><img src="/assets/images/logo.png" alt="Really Busy Wizards"></a></h1>
+    </header>
+
+    <article>
+   <h2>What a difference a couple days (and some new skills) makes!</h2>
+   <p>You may remember that just this last Saturday I wrote a <a href="http://reallybusywizards.com/one-week-in-as-motivated-as-ever/">blog post</a> centered around sharing my progress publicly when coding. That day, I felt pretty accomplished because I succeeded in writing a hangman program. However, it really didn&#39;t feel &quot;right&quot; since the code was ugly and really wasn&#39;t as readable as a program written in Ruby should be. So, today I totally rewrote it with another member of my <a href="http://thisismetis.com">Metis</a> cohort. During this exercise I had so many &quot;Aha!&quot; moments that I really feel I have reached a huge milestone in my understanding of Object-oriented programming. One of our instructors, Goose, described that icky feeling you get when writing code that works, but is just not as clean as you want it to be. That perfectly described how I felt about my last commit to my hangman.rb file on Saturday. Everything worked, the game could be played, but it was just plain... ugly! By writing code using OOP it really helps you step back and tackle one issue at a time and allows for complete readability.</p>
+
+<p>This is, again, further than I have reached in any other programming language and my code is looking clean. <em>And</em>... I actually understand everything I am doing, which is a huge accomplishment in my mind.</p>
+
+<p>You can check out my new hangman game here: <a href="https://github.com/kenyonj/metis-week02/blob/master/day01/hangman_oop.rb">Github: hangman_oop.rb</a></p>
+
+<p>Or, just check out this code:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">class Hangman
+ MAX_GUESSES = 6
+attr_reader :word, :guesses
+
+def initialize(word)
+    @word = word
+    @guesses = []
+end
+
+ def play
+ display_welcome_message
+
+    until game_over?
+     display_status
+   ask_for_letter
+    end
+
+    display_result
+  end
+
+  private
+
+  def display_result
+    if winner?
+      puts &quot;You win!&quot;
+    else
+      puts &quot;You lose! The word was #{word.join}.&quot;
+    end
+  end
+
+  def ask_for_letter
+    print &quot;&gt; &quot;
+    guesses &lt;&lt; gets.strip.downcase
+    guesses.uniq!
+  end
+
+  def game_over?
+    winner? || loser?
+end
+
+  def winner?
+    (word - guesses).empty?
+  end
+
+  def loser?
+    guesses_remaining == 0
+  end
+
+  def display_status
+    display_turns_remaining
+    display_guesses
+    display_board
+  end
+
+  def display_guesses
+    puts guesses.sort.join(&quot; &quot;)
+  end
+
+  def display_turns_remaining
+    puts &quot;#{guesses_remaining} guesses remaining&quot;
+  end
+
+  def display_board
+    word.each do |letter|
+      if guesses.include? letter
+        print &quot;#{letter} &quot;
+      else
+        print &quot;_ &quot;
+      end
+    end
+    puts
+  end
+
+  def guesses_remaining
+    MAX_GUESSES - incorrect_guesses
+  end
+
+  def incorrect_guesses
+    (guesses - word).length
+  end
+
+  def display_welcome_message
+    puts &quot;Welcome to Hangman!&quot;
+  end
+end
+
+dictionary = []
+
+file = File.open(&quot;/usr/share/dict/words&quot;, &quot;r&quot;)
+dictionary = file.to_a
+word = dictionary.sample.strip.split(&quot;&quot;)
+
+game = Hangman.new(word)
+game.play
+</code></pre></div>
+<p>As fun as this command line Ruby stuff is, I am really looking forward to getting into Ruby on Rails soon!   </p>
+
+</article>
+
+<footer>
+   <div id="date" class="meta">
+      03 Mar 2014
+   </div>
+   <div id="return">
+      <a href="/">&laquo; Return to the home page</a>
+   </div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-18540444-7', 'auto');
+  ga('send', 'pageview');
+</script>
+
+    </main>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-18540444-7', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
